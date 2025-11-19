@@ -1,10 +1,12 @@
 package com.example.workshopingmongo.services;
 
+import com.example.workshopingmongo.dto.UserDto;
 import com.example.workshopingmongo.repository.UserRepository;
 import com.example.workshopingmongo.services.execption.ObjectNotFoundExcepion;
 import domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -23,4 +25,11 @@ public class UserService {
                 .orElseThrow(() -> new ObjectNotFoundExcepion("Objeto não encontrado. ID: " + id));
     }
 
+    public User insert(User obj){
+        return userRepository.insert(obj);
+    }
+
+    public User fromDto(UserDto obj){
+        return new User(obj.getId(), obj.getName(), obj.getEmail());
+    }
 }
