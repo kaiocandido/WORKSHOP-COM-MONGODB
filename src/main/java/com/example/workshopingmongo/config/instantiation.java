@@ -1,5 +1,6 @@
 package com.example.workshopingmongo.config;
 
+import com.example.workshopingmongo.dto.AuthorDto;
 import com.example.workshopingmongo.repository.PostRepository;
 import com.example.workshopingmongo.repository.UserRepository;
 import domain.Post;
@@ -34,12 +35,12 @@ public class instantiation implements CommandLineRunner {
         User alex = new User(null, "alex Brown", "alex@gmail.com");
         User bob = new User(null, "bob Brown", "bob@gmail.com");
 
-        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para SP", maria);
-        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei Feliz hoje", maria);
-
         userRepository.save(maria);
         userRepository.save(alex);
         userRepository.save(bob);
+
+        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para SP", new AuthorDto(maria));
+        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei Feliz hoje", new AuthorDto(maria));
 
         postRepository.save(post1);
         postRepository.save(post2);
